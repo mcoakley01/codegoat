@@ -24,6 +24,7 @@ resource "aws_security_group" "allow_all_ssh" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  
 }
 
 resource "aws_security_group" "allow_ssh_from_valid_cidr" {

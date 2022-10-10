@@ -15,12 +15,6 @@ provider "aws" {
 }
 
 resource "aws_iam_account_password_policy" "strict" {
-  #minimum_password_length        = 8
-  #require_lowercase_characters   = true
-  #require_numbers                = true
-  #require_uppercase_characters   = true
-  #require_symbols                = true
-  #allow_users_to_change_password = true
   max_password_age = 365
   #password_reuse_prevention      = 12
 }
@@ -43,6 +37,7 @@ module "storage" {
   environment    = var.env
   vpc_id         = module.vpc.vpc_id
   private_subnet = [module.subnet.subnet_id_primary, module.subnet.subnet_id_secondary]
+
 }
 
 module "iam" {
@@ -63,10 +58,12 @@ module "instance" {
   tags = {
     Environment = var.env
   }
+
 }
 
 
 resource "aws_ebs_volume" "i" {
   availability_zone = "${var.region}a"
   size              = 40
+
 }

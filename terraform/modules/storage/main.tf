@@ -112,6 +112,7 @@ resource "aws_s3_bucket" "public-bucket-oops" {
   tags = merge(var.default_tags, {
     name = "example_public_${var.environment}"
   })
+  
 }
 
 resource "aws_s3_bucket_public_access_block" "private_access" {
